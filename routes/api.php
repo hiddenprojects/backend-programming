@@ -31,6 +31,8 @@ Route::delete('/animals/{id}', [AnimalController::class, 'destroy']);
 
 
 // Students API
+Route::get('/student', [StudentController::class, 'index']);
+
 Route::get('/student/{id}', [StudentController::class, 'index']);
 
 Route::post('/student', [StudentController::class, 'store']);
