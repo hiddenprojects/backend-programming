@@ -9,21 +9,27 @@ class StudentController extends Controller {
     //Index
     public function index($id = NULL) {
 
+        if (($id != NULL ? !is_numeric($id) : $id)){
+            $errormessage = ['message' => 'id yang dimasukan harus angka'];
+            return response()->json($errormessage, 404);
+        }
+
         $student = $id != NULL ? Student::where('id', $id)->get() : Student::all();
 
         return response()->json([
             'message' => 'Get all data students',
             'data' => $student
         ], 200);
+
     }
 
     public function store(Request $request) {
-        $store_data = [
-            'nama' => $request->nama,
-            'nim' => $request->nim,
-            'email' => $request->email,
-            'jurusan' => $request->jurusan,
-        ];
+        $store_data = $request->validate([
+            'nama' => 'required',
+            'nim' => 'numeric|required',
+            'email' => 'email|required',
+            'jurusan' => 'required',
+        ]);
 
         $student = Student::create($store_data);
 
