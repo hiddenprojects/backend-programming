@@ -34,13 +34,13 @@ Route::delete('/animals/{id}', [AnimalController::class, 'destroy']);
 // Students API
 Route::get('/student', [StudentController::class, 'index'])->middleware('auth:sanctum');
 
-Route::get('/student/{id}', [StudentController::class, 'index']);
+Route::get('/student/{id}', [StudentController::class, 'index'])->middleware('auth:sanctum');
 
-Route::post('/student', [StudentController::class, 'store']);
+Route::post('/student', [StudentController::class, 'store'])->middleware('auth:sanctum');
 
-Route::put('/student/{id}', [StudentController::class, 'update']);
+Route::put('/student/{id}', [StudentController::class, 'update'])->middleware('auth:sanctum');
 
-Route::delete('/student/{id}', [StudentController::class, 'destroy']);
+Route::delete('/student/{id}', [StudentController::class, 'destroy'])->middleware('auth:sanctum');
 
 
 // Authentication
