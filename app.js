@@ -1,10 +1,9 @@
-const { index, store, update, destroy } = require('./Controllers/FruitController.js');
+const router = require("./routes/api.js");
 
-const main = () => {
-  index();
-  store('Younglex');
-  update('0', 'Melon');
-  destroy('0');
-}
+const express = require('express');
+const app = express();
+const port = 3000;
 
-main();
+app.use(express.json());
+app.use(router);
+app.listen(port);
